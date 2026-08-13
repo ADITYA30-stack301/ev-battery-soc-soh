@@ -1,0 +1,22 @@
+import matplotlib
+matplotlib.use("Agg")
+import pandas as pd
+import matplotlib.pyplot as plt
+data = pd.read_csv("battery_cycle_level_dataset_CLEAN_FINAL.csv")
+print(data.head())
+b5 = data[data["battery_id"] == "B0005"]
+b5 = b5.sort_values("cycle")
+plt.plot(b5["cycle"],b5["capacity"])
+plt.xlabel("Cycle")
+plt.ylabel("Capacity(Ahr)")
+plt.title("B0005-Capacity fade")
+plt.grid(True)
+plt.savefig("b0005_capacity.png")
+plt.figure()
+plt.plot(b5["cycle"],b5["soh"])
+plt.xlabel("Cycle")
+plt.ylabel("SoH")
+plt.title("SoH for B0005")
+plt.grid(True)
+plt.savefig("SoH_b00005.png")
+print("Saved plot")
