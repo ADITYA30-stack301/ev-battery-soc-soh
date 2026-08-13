@@ -6,6 +6,8 @@ data = pd.read_csv("battery_cycle_level_dataset_CLEAN_FINAL.csv")
 print(data.head())
 b5 = data[data["battery_id"] == "B0005"]
 b5 = b5.sort_values("cycle")
+b5["my_soh"]= b5["capacity"]/b5["capacity"].iloc[0]
+print(b5[["cycle", "capacity", "soh", "my_soh"]].head(10))
 plt.plot(b5["cycle"],b5["capacity"])
 plt.xlabel("Cycle")
 plt.ylabel("Capacity(Ahr)")

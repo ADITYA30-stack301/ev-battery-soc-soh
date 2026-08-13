@@ -7,6 +7,12 @@ Estimating State of Charge (SoC) and State of Health (SoH) for lithium-ion batte
 - Plotted capacity fade over charge-discharge cycles
 - Plotted State of Health (SoH) degradation over cycles
 
+## SoH Validation
+
+Calculated SoH independently as `capacity / capacity[0]` (ratio to initial 
+capacity) and compared it against the dataset's provided `soh` column — 
+values matched exactly, confirming the formula and dataset are consistent.
+
 ## Tech Stack
 
 - Python
