@@ -89,3 +89,13 @@ over the full discharge cycle, using two capacity references:
 SoC drops from 100% to ~6.9% over the discharge (using rated capacity), 
 consistent with the Coulomb counting result from earlier. The curve flattens 
 near the end as current drops toward zero at the voltage cutoff.
+
+### Current During Discharge
+
+![Current During Discharge](current_cycle1.png)
+
+Current stays roughly constant around -2.0 A for most of the discharge 
+(after a brief initial ramp-up), which explains why the SoC curve above is 
+nearly linear — a steady current means SoC drops by a roughly fixed amount 
+at each time step. Real-world usage with variable current draw (acceleration, 
+braking, regen) would produce a non-linear SoC trajectory instead.
