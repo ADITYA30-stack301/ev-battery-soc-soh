@@ -41,6 +41,7 @@ over many cycles).
 - Python
 - pandas
 - matplotlib
+- scipy
 
 ## Results
 
@@ -68,3 +69,23 @@ Capacity drops from ~1.86 Ahr to ~1.33 Ahr over 168 cycles, reaching the
 ![SoH Degradation](SoH_b00005.png)
 SoH is calculated as capacity relative to initial capacity, so it mirrors 
 the capacity fade curve exactly.
+
+## SoC Estimation
+
+Converted Coulomb counting into a running State of Charge (SoC) estimate 
+over the full discharge cycle, using two capacity references:
+
+- **Rated capacity (2.0 Ahr, nameplate spec)** — used as the primary SoC 
+  definition.
+- **Measured capacity (1.862 Ahr, from Coulomb counting)** — Included for comparison only. Since this
+  value is obtained from the same Coulomb-counting integration used for the
+  SoC calculation, the estimated SoC naturally approaches 0% at the end of
+  the discharge cycle and is therefore not used as an independent validation
+  reference.
+
+
+![SoC Estimation](soc_rated_cycle1.png)
+
+SoC drops from 100% to ~6.9% over the discharge (using rated capacity), 
+consistent with the Coulomb counting result from earlier. The curve flattens 
+near the end as current drops toward zero at the voltage cutoff.
