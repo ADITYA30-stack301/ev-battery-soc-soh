@@ -13,6 +13,29 @@ Calculated SoH independently as `capacity / capacity[0]` (ratio to initial
 capacity) and compared it against the dataset's provided `soh` column — 
 values matched exactly, confirming the formula and dataset are consistent.
 
+## Coulomb Counting (SoC Estimation)
+
+Implemented Coulomb counting from scratch using raw NASA `.mat` data (not 
+available in the simplified CSV) to estimate charge removed during a single 
+discharge cycle.
+
+**Method:**
+- Extracted `Current_measured` and `Time` arrays from cycle 1's raw discharge data
+- Applied the trapezoidal rule to integrate current over time:  
+  `charge = Σ (average current between two readings) × (time elapsed)`
+- Converted the result from Amp-seconds to Amp-hours
+
+**Result:**
+- Calculated capacity: **1.8622 Ahr**
+- NASA's recorded capacity for the same cycle: **1.8565 Ahr**
+- Error: ~0.3%
+
+This small error is expected — it comes from sensor noise and the trapezoidal 
+approximation using discrete sampled data rather than continuous measurement. 
+This is also why real BMS systems typically combine Coulomb counting with 
+voltage-based correction rather than relying on it alone (drift accumulates 
+over many cycles).
+
 ## Tech Stack
 
 - Python
