@@ -54,3 +54,19 @@ plt.title("B0005 - Current During Discharge - Cycle 1")
 plt.grid(True)
 plt.savefig("current_cycle1.png")
 print("Saved current plot!")
+
+voltage = one_discharge["data"]["Voltage_measured"][0, 0][0]
+print(voltage.shape)
+
+plt.figure()
+plt.plot(soc_rated, voltage)
+plt.xlabel("SoC (%)")
+plt.ylabel("Voltage(V)")
+plt.title("B0005 - Voltage vs SoC(%) - Cycle 1")
+plt.grid(True)
+plt.savefig("VTG_VS_SoC_cycle1.png")
+print("Saved current plot!")
+
+print("Last 10 current readings:", current[-10:])
+print("Last 10 voltage readings:", voltage[-10:])
+print("Last 10 SoC values:", soc_rated[-10:])

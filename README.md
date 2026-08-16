@@ -113,3 +113,30 @@ throughout) rather than random error — suggesting a small systematic bias
 in the trapezoidal integration method rather than accumulating drift. This 
 confirms Coulomb counting stays reliable across the battery's full life, 
 not just for a single cycle.
+
+## OCV Approximation (Voltage vs SoC)
+
+Plotted voltage against SoC (using rated capacity) for cycle 1's discharge, 
+since Coulomb counting alone drifts over time and voltage-based SoC lookup 
+is the standard real-world correction method.
+
+**Important caveat:** this is not true Open Circuit Voltage, since the 
+battery is under a constant ~2A load throughout discharge, never at rest. 
+The measured voltage is lower than true OCV by an amount proportional to 
+internal resistance (`V_measured = V_OCV - I × R_internal`). This is best 
+understood as a "quasi-OCV" curve — useful for showing the characteristic 
+shape, but not a substitute for true rest-voltage measurements.
+
+![Voltage vs SoC](VTG_VS_SoC_cycle1.png)
+
+The curve shows the classic Li-ion S-shape: steep near full charge (90-100% 
+SoC) and near empty (below ~15% SoC), with a flat middle region (20-90% SoC) 
+where voltage is a poor indicator of SoC on its own — this is why Coulomb 
+counting and voltage-based methods are complementary rather than 
+interchangeable.
+
+**Artifact near cutoff:** a small voltage recovery near SoC ~7% was verified 
+against the raw current data — current drops to near-zero in the final 
+readings (test rig detecting cutoff), which reduces the internal-resistance 
+voltage drop and causes voltage to rise slightly even as SoC stays roughly 
+constant. This confirms the dip is a real physical effect, not sensor noise.
