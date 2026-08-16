@@ -97,5 +97,19 @@ near the end as current drops toward zero at the voltage cutoff.
 Current stays roughly constant around -2.0 A for most of the discharge 
 (after a brief initial ramp-up), which explains why the SoC curve above is 
 nearly linear — a steady current means SoC drops by a roughly fixed amount 
-at each time step. Real-world usage with variable current draw (acceleration, 
-braking, regen) would produce a non-linear SoC trajectory instead.
+at each time step. Real-world usage with variable current draw would produce a non-linear SoC trajectory instead.
+
+## Coulomb Counting Across All Cycles
+
+Extended Coulomb counting from a single cycle to all 168 discharge cycles, 
+generating an independent capacity estimate for the battery's entire life 
+and saving results to `my_coulomb_counting_results.csv`.
+
+![Coulomb Counting vs NASA, All Cycles](coulomb_counting_all_cycles.png)
+
+My calculated capacity tracks NASA's recorded capacity closely across all 
+168 cycles, with a small, consistent offset (my values run slightly higher 
+throughout) rather than random error — suggesting a small systematic bias 
+in the trapezoidal integration method rather than accumulating drift. This 
+confirms Coulomb counting stays reliable across the battery's full life, 
+not just for a single cycle.
