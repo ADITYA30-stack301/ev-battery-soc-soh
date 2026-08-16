@@ -10,13 +10,12 @@ a quasi-OCV analysis from scratch using both a cycle-level summary dataset
 and NASA's raw sensor data, validating each method against reference values 
 provided in the dataset.
 
-**Tech stack:** 
-
-Python
-pandas
-matplotlib
-scipy
-numpy
+**Tech stack:**
+- Python
+- pandas
+- matplotlib
+- scipy
+- numpy
 
 ## 2. Dataset
 
