@@ -56,3 +56,20 @@ plt.grid(True)
 plt.savefig("coulomb_counting_all_cycles.png")
 print("Saved comparison plot!")
 
+error = results_pd["my_capacity"] - results_pd["nasa_capacity"]
+percent_error = (error/results_pd["nasa_capacity"])*100
+
+mean_abs_error = error.abs().mean()
+mean_percent_error = percent_error.abs().mean()
+max_percent_error = percent_error.abs().max()
+
+import numpy as np
+
+rmse = np.sqrt((error ** 2).mean())
+
+print("Mean Absolute Error (Ahr):", mean_abs_error)
+print("Root Mean Square Error (Ahr):", rmse)
+print("Mean Percent Error (%):", mean_percent_error)
+print("Max Percent Error (%):", max_percent_error)
+
+
